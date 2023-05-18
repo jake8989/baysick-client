@@ -2,6 +2,7 @@ import '@/styles/globals.css';
 import { makeStyles } from '@material-ui/styles';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Paper } from '@mui/material';
+import { AuthContextProvider } from '@/context/AuthContext';
 const theme = createTheme({
 	palette: {
 		background: {
@@ -27,7 +28,9 @@ const useStyles = makeStyles((theme) => ({
 export default function App({ Component, pageProps }) {
 	return (
 		<ThemeProvider theme={theme}>
-			<Component {...pageProps} />
+			<AuthContextProvider>
+				<Component {...pageProps} />
+			</AuthContextProvider>
 		</ThemeProvider>
 	);
 }

@@ -17,10 +17,15 @@ import Button from '@mui/material/Button';
 import { useRouter } from 'next/router';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 const drawerWidth = 240;
-
+import { useAuthContext } from '@/hooks/useAuthContext';
+import { AuthContext } from '@/context/AuthContext';
+import { useContext } from 'react';
 function Nav1(props) {
 	const router = useRouter();
-	const [user, setUser] = React.useState(true);
+	// const [user, setUser] = React.useState(true);
+	// let user = true;
+	const user = useContext(AuthContext);
+	console.log(user);
 	const { window } = props;
 	const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -66,14 +71,14 @@ function Nav1(props) {
 						Studio
 					</Button>
 				</ListItem>
-				{/* {user && (
-									<ListItem>
-										<Button>
-											<AccountCircleIcon fontSize="medium"></AccountCircleIcon>
-										</Button>
-									</ListItem>
-								)} */}
-				{user && (
+				{user.user && (
+					<ListItem>
+						<Button>
+							<AccountCircleIcon fontSize="medium"></AccountCircleIcon>
+						</Button>
+					</ListItem>
+				)}
+				{!user.user && (
 					<ListItem>
 						<Button
 							onClick={() => {
@@ -142,7 +147,18 @@ function Nav1(props) {
 										</Button>
 									</ListItem>
 								)} */}
-								{user && (
+								{user.user && (
+									<ListItem>
+										<Button
+											onClick={() => {
+												router.push('/profile');
+											}}
+										>
+											<AccountCircleIcon fontSize="medium"></AccountCircleIcon>
+										</Button>
+									</ListItem>
+								)}
+								{!user.user && (
 									<ListItem>
 										<Button
 											onClick={() => {

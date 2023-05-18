@@ -13,10 +13,18 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { InputAdornment, IconButton, Theme } from '@mui/material';
+import {
+	InputAdornment,
+	IconButton,
+	Theme,
+	Snackbar,
+	Alert,
+} from '@mui/material';
 // import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 var emailValidator = require('email-validator');
 import { useRouter } from 'next/router';
+import { useSignup } from '@/hooks/useSignup';
 function Copyright(props) {
 	return (
 		<Typography
@@ -42,10 +50,11 @@ function Copyright(props) {
 export default function SignUp() {
 	const router = useRouter();
 	const [visible, setVisible] = React.useState(false);
+	let { signup, isLoading, error, setError, success, setSuccess } = useSignup();
 	const handleShowPassword = () => {
 		setVisible(!visible);
 	};
-	const handleSubmit = (event) => {
+	const handleSubmit = async (event) => {
 		event.preventDefault();
 
 		const data = new FormData(document.getElementById('form-data'));
@@ -88,6 +97,7 @@ export default function SignUp() {
 		if (!validator(name, email, password, phone)) {
 			return;
 		}
+		await signup(name, email, phone, password, router);
 	};
 
 	return (
@@ -193,6 +203,13 @@ export default function SignUp() {
 					>
 						Sign Up
 					</Button>
+					{success && (
+						<Snackbar open={open} autoHideDuration={2000}>
+							<Alert severity="success" sx={{ width: '100%' }}>
+								Account Created Succesfully
+							</Alert>
+						</Snackbar>
+					)}
 					<Grid container justifyContent="flex-end">
 						<Grid item>
 							<Button

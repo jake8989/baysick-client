@@ -13,9 +13,19 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { InputAdornment, IconButton, Theme } from '@mui/material';
+import {
+	InputAdornment,
+	IconButton,
+	Theme,
+	Snackbar,
+	Alert,
+} from '@mui/material';
 // import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useRouter } from 'next/router';
+// import { useSignup } from '@/hooks/useLogin';
+import { useLogin } from '@/hooks/useLogin';
+import { useContext } from 'react';
+import { AuthContext } from '@/context/AuthContext';
 var emailValidator = require('email-validator');
 function Copyright(props) {
 	return (
@@ -39,13 +49,15 @@ function Copyright(props) {
 
 // const defaultTheme = createTheme();
 
-export default function SignUp() {
+export default function Login() {
+	const router = useRouter();
 	const [visible, setVisible] = React.useState(false);
+	let { login, isLoading, error, setError, success, setSuccess } = useLogin();
 	const handleShowPassword = () => {
 		setVisible(!visible);
 	};
-	const router = useRouter();
-	const handleSubmit = (event) => {
+
+	const handleSubmit = async (event) => {
 		event.preventDefault();
 
 		const data = new FormData(document.getElementById('form-data'));
@@ -76,6 +88,7 @@ export default function SignUp() {
 		if (!validator(email, password, phone)) {
 			return;
 		}
+		await login(email, password, router);
 	};
 
 	return (
@@ -147,9 +160,17 @@ export default function SignUp() {
 						fullWidth
 						variant="contained"
 						sx={{ mt: 3, mb: 2 }}
+						onClick={handleSubmit}
 					>
 						Login
 					</Button>
+					{success && (
+						<Snackbar open={open} autoHideDuration={2000}>
+							<Alert severity="success" sx={{ width: '100%' }}>
+								Logged in Succesfully
+							</Alert>
+						</Snackbar>
+					)}
 					<Button
 						onClick={() => {
 							router.push('/');
