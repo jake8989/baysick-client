@@ -171,6 +171,20 @@ export default function Login() {
 							</Alert>
 						</Snackbar>
 					)}
+					{error && (
+						<Snackbar open={open} autoHideDuration={6000}>
+							<Alert severity="error" sx={{ width: '100%' }}>
+								{error}{' '}
+								<Button
+									onClick={() => {
+										setError(null);
+									}}
+								>
+									X
+								</Button>
+							</Alert>
+						</Snackbar>
+					)}
 					<Button
 						onClick={() => {
 							router.push('/');

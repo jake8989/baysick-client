@@ -210,6 +210,20 @@ export default function SignUp() {
 							</Alert>
 						</Snackbar>
 					)}
+					{error && (
+						<Snackbar open={open} autoHideDuration={6000}>
+							<Alert severity="error" sx={{ width: '100%' }}>
+								{error}{' '}
+								<Button
+									onClick={() => {
+										setError(null);
+									}}
+								>
+									X
+								</Button>
+							</Alert>
+						</Snackbar>
+					)}
 					<Grid container justifyContent="flex-end">
 						<Grid item>
 							<Button
