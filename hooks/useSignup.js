@@ -13,7 +13,7 @@ export const useSignup = () => {
 		setLoading(true);
 		setError(null);
 		const response = await fetch(
-			`${process.env.NEXT_PUBLIC_BACKEND}/api/users/signup`,
+			'https://drab-cyan-raven-shoe.cyclic.app/api/users/signup',
 			{
 				method: 'POST',
 				mode: 'no-cors',
