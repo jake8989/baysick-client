@@ -16,6 +16,7 @@ export const useSignup = () => {
 			'https://drab-cyan-raven-shoe.cyclic.app/api/users/signup',
 			{
 				method: 'POST',
+				mode: 'no-cors',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ name, email, phone, password }),
 			}
