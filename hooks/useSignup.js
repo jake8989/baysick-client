@@ -12,11 +12,14 @@ export const useSignup = () => {
 	const signup = async (name, email, phone, password, router) => {
 		setLoading(true);
 		setError(null);
-		const response = await fetch('/api/users/signup', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ name, email, phone, password }),
-		});
+		const response = await fetch(
+			'https://drab-cyan-raven-shoe.cyclic.app/api/users/signup',
+			{
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ name, email, phone, password }),
+			}
+		);
 		const json = await response.json();
 		console.log(json);
 		if (!response.ok) {
