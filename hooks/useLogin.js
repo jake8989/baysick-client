@@ -1,16 +1,17 @@
 import { useState } from 'react';
 // import { AuthContext } from '@/context/AuthContext';
-import { Password } from '@mui/icons-material';
+import { Password, Troubleshoot } from '@mui/icons-material';
 import { useAuthContext } from './useAuthContext';
 // const env = require('dotenv').config();
 // const user = useContext(AuthContext);
 // console.log(user);
 import { useContext } from 'react';
 import { AuthContext } from '@/context/AuthContext';
+import { useSignup } from './useSignup';
 export const useLogin = () => {
 	// const [user, setUser] = useState(null);
 	const [error, setError] = useState(null);
-	const [loading, setLoading] = useState(null);
+	const [loading, setLoading] = useState(false);
 	const [success, setSuccess] = useState(null);
 	const { dispatch } = useAuthContext();
 	const user = useContext(AuthContext);
@@ -33,7 +34,7 @@ export const useLogin = () => {
 		const json = await response.json();
 		console.log(json);
 		if (!response.ok) {
-			setLoading(false);
+			setLoading(true);
 			console.log(json.message);
 			setError(json.message);
 		}
@@ -45,5 +46,7 @@ export const useLogin = () => {
 			router.push('/');
 		}
 	};
+	console.log(loading);
 	return { login, loading, error, setError, success, setSuccess };
 };
+// export default useLogin;

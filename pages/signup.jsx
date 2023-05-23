@@ -21,7 +21,7 @@ import {
 	Alert,
 } from '@mui/material';
 // import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import LoadinSctreen from '@/components/LoadinSctreen';
 var emailValidator = require('email-validator');
 import { useRouter } from 'next/router';
 import { useSignup } from '@/hooks/useSignup';
@@ -50,10 +50,11 @@ function Copyright(props) {
 export default function SignUp() {
 	const router = useRouter();
 	const [visible, setVisible] = React.useState(false);
-	let { signup, isLoading, error, setError, success, setSuccess } = useSignup();
+	let { signup, loading, error, setError, success, setSuccess } = useSignup();
 	const handleShowPassword = () => {
 		setVisible(!visible);
 	};
+	console.log(loading);
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
@@ -200,8 +201,9 @@ export default function SignUp() {
 						variant="contained"
 						sx={{ mt: 3, mb: 2 }}
 						onClick={handleSubmit}
+						disabled={loading}
 					>
-						Sign Up
+						{loading ? 'Loading...' : 'Sign Up'}
 					</Button>
 					{success && (
 						<Snackbar open={open} autoHideDuration={2000}>

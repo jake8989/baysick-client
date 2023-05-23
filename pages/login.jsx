@@ -52,11 +52,11 @@ function Copyright(props) {
 export default function Login() {
 	const router = useRouter();
 	const [visible, setVisible] = React.useState(false);
-	let { login, isLoading, error, setError, success, setSuccess } = useLogin();
+	const { login, loading, error, setError, success, setSuccess } = useLogin();
 	const handleShowPassword = () => {
 		setVisible(!visible);
 	};
-
+	console.log(loading);
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
@@ -161,8 +161,9 @@ export default function Login() {
 						variant="contained"
 						sx={{ mt: 3, mb: 2 }}
 						onClick={handleSubmit}
+						disabled={loading}
 					>
-						Login
+						{loading ? 'Loading...' : 'Login'}
 					</Button>
 					{success && (
 						<Snackbar open={open} autoHideDuration={2000}>
