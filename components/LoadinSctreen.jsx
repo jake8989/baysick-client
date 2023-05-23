@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 const LoadinSctreen = () => {
+	const classes = useStyles();
 	return (
 		<section className={classes.root}>
 			<Grid
