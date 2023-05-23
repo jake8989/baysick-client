@@ -20,7 +20,8 @@ import {
 	Snackbar,
 	Alert,
 } from '@mui/material';
-import { useAddProduct } from '@/hooks/useAddProduct';
+// import { useAddProduct } from '@/hooks/useAddProduct';
+import { useUpdateProduct } from '@/hooks/useAddProduct';
 import { useRouter } from 'next/router';
 function Copyright(props) {
 	return (
@@ -44,11 +45,11 @@ function Copyright(props) {
 
 // const defaultTheme = createTheme();
 
-export default function SignUp() {
+export default function UpdateProduct() {
 	const router = useRouter();
 	const [visible, setVisible] = React.useState(false);
-	let { addproduct, isLoading, error, setError, success, setSuccess } =
-		useAddProduct();
+	let { updateproduct, isLoading, error, setError, success, setSuccess } =
+		useUpdateProduct();
 	const handleShowPassword = () => {
 		setVisible(!visible);
 	};
@@ -57,7 +58,7 @@ export default function SignUp() {
 
 		const data = new FormData(document.getElementById('form-data'));
 
-		// let product_id = data.get('product_id');
+		let product_id = data.get('product_id');
 		let type = data.get('type');
 		let img_url = data.get('img_url');
 		let title = data.get('title');
@@ -66,12 +67,8 @@ export default function SignUp() {
 		let offer = data.get('offer');
 		let product_color = data.get('product_color').split(',');
 		let discription = data.get('discription');
-		let manufacturer = data.get('manufacturer');
-		let rating = data.get('rating');
 		let views_img = data.get('views_img').split(',');
-		let factors = new Date();
-		let product_id = Math.random() * 10000000 * factors;
-		await addproduct(
+		console.log(
 			product_id,
 			type,
 			img_url,
@@ -81,9 +78,19 @@ export default function SignUp() {
 			offer,
 			product_color,
 			discription,
-			manufacturer,
-			views_img,
-			rating
+			views_img
+		);
+		await updateproduct(
+			product_id,
+			type,
+			img_url,
+			title,
+			price,
+			sizes,
+			offer,
+			product_color,
+			discription,
+			views_img
 		);
 	};
 
@@ -200,17 +207,7 @@ export default function SignUp() {
 								// autoComplete="new-password"
 							/>
 						</Grid>
-						<Grid item xs={12}>
-							<TextField
-								required
-								fullWidth
-								name="manufacturer"
-								label="Manufacturer"
-								id="manufacturer"
 
-								// autoComplete="new-password"
-							/>
-						</Grid>
 						<Grid item xs={12}>
 							<TextField
 								required
@@ -218,17 +215,6 @@ export default function SignUp() {
 								name="views_img"
 								label="Show Case IMG:S LINKS"
 								id="views_img"
-
-								// autoComplete="new-password"
-							/>
-						</Grid>
-						<Grid item xs={12}>
-							<TextField
-								required
-								fullWidth
-								name="rating"
-								label="Rating Of The Piroduct"
-								id="rating"
 
 								// autoComplete="new-password"
 							/>
@@ -241,7 +227,7 @@ export default function SignUp() {
 						sx={{ mt: 3, mb: 2 }}
 						onClick={handleSubmit}
 					>
-						Add Product
+						Update Product
 					</Button>
 					{success && (
 						<Snackbar open={open} autoHideDuration={2000}>
