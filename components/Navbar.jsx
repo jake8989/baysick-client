@@ -20,6 +20,7 @@ const drawerWidth = 240;
 import { useAuthContext } from '@/hooks/useAuthContext';
 import { AuthContext } from '@/context/AuthContext';
 import { useContext } from 'react';
+import ShoppingBagTwoToneIcon from '@mui/icons-material/ShoppingBagTwoTone';
 function Nav1(props) {
 	const router = useRouter();
 	// const [user, setUser] = React.useState(true);
@@ -90,6 +91,16 @@ function Nav1(props) {
 						</Button>
 					</ListItem>
 				)}
+
+				<ListItem>
+					<Button
+						onClick={() => {
+							router.push('/products/cart');
+						}}
+					>
+						<ShoppingBagTwoToneIcon></ShoppingBagTwoToneIcon>
+					</Button>
+				</ListItem>
 			</List>
 		</Box>
 	);
@@ -158,6 +169,17 @@ function Nav1(props) {
 										</Button>
 									</ListItem>
 								)}
+
+								<ListItem>
+									<Button
+										onClick={() => {
+											router.push('/products/cart');
+										}}
+									>
+										<ShoppingBagTwoToneIcon></ShoppingBagTwoToneIcon>
+									</Button>
+								</ListItem>
+
 								{!user.user && (
 									<ListItem>
 										<Button

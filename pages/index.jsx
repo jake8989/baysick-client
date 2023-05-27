@@ -6,6 +6,7 @@ import { useTheme } from '@material-ui/styles';
 // import { Height } from '@mui/icons-material';
 import { Typography, Box, Button } from '@mui/material';
 import Image from 'next/image';
+import Products from './products';
 const useStyles = makeStyles((theme) => ({
 	sectionMain: {
 		height: '100vh',
@@ -22,7 +23,8 @@ export default function Home() {
 			<Box
 				display={'flex'}
 				sx={{
-					width: '100vw',
+					// width: '100vw',
+					minHeight: '73vh',
 					'@media(max-width:990px)': {
 						flexDirection: 'column',
 						justifyContent: 'center',
@@ -35,7 +37,7 @@ export default function Home() {
 					display={'flex'}
 					flexDirection={'column'}
 					alignItems={'center'}
-					justifyContent={'center'}
+					// justifyContent={'center'}
 					sx={{
 						width: '50vw',
 						'@media(max-width:990px)': {
@@ -92,7 +94,7 @@ export default function Home() {
 							},
 						}}
 					>
-						Shop Now the Exclusive Products from BaySick
+						Shop Now the Exclusive T-Shirts from BaySick
 					</Typography>
 					<Box>
 						<Button
@@ -114,7 +116,7 @@ export default function Home() {
 				<Box
 					display={'flex'}
 					justifyContent={'center'}
-					alignItems={'center'}
+					// alignItems={'center'}
 					sx={{
 						width: '50vw',
 						'@media(max-width:990px)': {
@@ -128,6 +130,7 @@ export default function Home() {
 					<Image src={'/shop.png'} height={'400'} width={'400'}></Image>
 				</Box>
 			</Box>
+			<Products></Products>
 		</main>
 	);
 }
