@@ -68,12 +68,6 @@ const Cart = ({
 										width={70}
 										alt="product_image"
 									></Image>
-									<Image
-										src={cart[k].img}
-										height={100}
-										width={70}
-										alt="product_image"
-									></Image>
 									<TableCell>{cart[k].title}</TableCell>
 									<TableCell>{cart[k].price}</TableCell>
 									<TableCell>
