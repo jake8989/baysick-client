@@ -143,13 +143,31 @@ function Nav1(props) {
 						<Box sx={{ display: { xs: 'none', sm: 'block' } }}>
 							<List sx={{ display: 'flex' }}>
 								<ListItem>
-									<Button>Categories</Button>
+									<Button
+										onClick={() => {
+											router.push('/');
+										}}
+									>
+										Home
+									</Button>
 								</ListItem>
 								<ListItem>
-									<Button>Fashion</Button>
+									<Button
+										onClick={() => {
+											router.push('/products/him');
+										}}
+									>
+										Men
+									</Button>
 								</ListItem>
 								<ListItem>
-									<Button>Studio</Button>
+									<Button
+										onClick={() => {
+											router.push('/products/him');
+										}}
+									>
+										Woman
+									</Button>
 								</ListItem>
 								{/* {user && (
 									<ListItem>
