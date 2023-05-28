@@ -163,3 +163,38 @@ export const useUpdateProduct = () => {
 	};
 	return { updateproduct, loading, error, setError, success, setSuccess };
 };
+export const useGetProducts = () => {
+	// console.log('user');
+	const [error, setError] = useState(null);
+	const [loading, setLoading] = useState(null);
+	const [success, setSuccess] = useState(null);
+	const user = useContext(AuthContext);
+	// const token = user.user.token;
+	const token = 'not able to solve this err at this moment';
+	const getproducts = async () => {
+		setLoading(true);
+		setError(null);
+		const response = await fetch(
+			`${process.env.NEXT_PUBLIC_BACKEND}/api/products/products`,
+			{
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${token}`,
+					'Content-Type': 'application/json',
+				},
+			}
+		);
+		const json = await response.json();
+		console.log(json);
+		if (!response.ok) {
+			setLoading(false);
+			console.log(json.message);
+			setError(json.message);
+		}
+		if (response.ok) {
+			setLoading(false);
+			setSuccess('ok');
+		}
+	};
+	return { getproducts, loading, error, setError, success, setSuccess };
+};
