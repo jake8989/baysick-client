@@ -3,12 +3,26 @@ import { Paper, Box, Typography, Link, Button } from '@mui/material';
 import Nav1 from '@/components/Navbar';
 import Image from 'next/image';
 import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Him = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 	// const classes = useStyles();
 	const [disable, setDisable] = React.useState(false);
 	return (
 		<main>
 			<Nav1></Nav1>
+			<ToastContainer
+				position="bottom-left"
+				autoClose={3000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+				theme="light"
+			/>
 			<Paper sx={{ paddingTop: '3rem' }}>
 				{/* <h1>Hii</h1> */}
 				{/* <Typography
@@ -174,6 +188,16 @@ const Him = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 								disabled={disable}
 								onClick={() => {
 									setDisable(true);
+									toast.success('Product Added Succesfully in Cart', {
+										position: 'bottom-left',
+										autoClose: 3000,
+										hideProgressBar: false,
+										closeOnClick: true,
+										pauseOnHover: true,
+										draggable: true,
+										progress: undefined,
+										theme: 'light',
+									});
 								}}
 							>
 								{disable && 'Added'}

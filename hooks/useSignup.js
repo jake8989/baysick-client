@@ -8,7 +8,7 @@ import useLogin from './useLogin';
 export const useSignup = () => {
 	const [user, setUser] = useState(null);
 	const [error, setError] = useState(null);
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(false);
 	const [success, setSuccess] = useState(null);
 	const { dispatch } = useAuthContext();
 	const signup = async (name, email, phone, password, router) => {
@@ -32,7 +32,7 @@ export const useSignup = () => {
 
 		console.log(json);
 		if (!response.ok) {
-			setLoading(true);
+			setLoading(false);
 			console.log(json.message);
 			setError(json.message);
 		}

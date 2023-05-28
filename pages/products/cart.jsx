@@ -17,6 +17,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 // import PlusOneIcon from '@mui/icons-material/PlusOne';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
+import { useRouter } from 'next/router';
 const Cart = ({
 	cart,
 	addToCart,
@@ -26,6 +27,7 @@ const Cart = ({
 	removeItemFromCart,
 }) => {
 	console.log(cart, addToCart, removeFromCart, clearCart, subTotal);
+	const router = useRouter();
 	return (
 		<main>
 			<Nav1></Nav1>
@@ -59,8 +61,19 @@ const Cart = ({
 					<TableBody>
 						{Object.keys(cart).map((k) => {
 							return (
-								<TableRow>
-									<Image src={cart[k].img} height={100} width={70}></Image>
+								<TableRow key={k}>
+									<Image
+										src={cart[k].img}
+										height={100}
+										width={70}
+										alt="product_image"
+									></Image>
+									<Image
+										src={cart[k].img}
+										height={100}
+										width={70}
+										alt="product_image"
+									></Image>
 									<TableCell>{cart[k].title}</TableCell>
 									<TableCell>{cart[k].price}</TableCell>
 									<TableCell>
@@ -122,7 +135,13 @@ const Cart = ({
 				<Button sx={{ margin: '3rem' }} variant="contained" onClick={clearCart}>
 					Clear Cart
 				</Button>
-				<Button sx={{ margin: '3rem' }} variant="contained">
+				<Button
+					sx={{ margin: '3rem' }}
+					variant="contained"
+					onClick={() => {
+						router.push('/products/checkout');
+					}}
+				>
 					Checkout
 				</Button>
 			</TableContainer>

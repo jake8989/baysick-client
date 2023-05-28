@@ -117,7 +117,7 @@ function Nav1(props) {
 					sx={{
 						color: 'black',
 						backgroundColor: '#EEEEEE',
-						zIndex: '1000',
+						zIndex: '1000000',
 					}}
 				>
 					<Toolbar>
