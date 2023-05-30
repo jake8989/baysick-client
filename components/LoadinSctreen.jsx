@@ -1,24 +1,17 @@
 import React from 'react';
-// import { CircularProgress } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 import CircularProgress from '@mui/material/CircularProgress';
 import { Grid, Typography } from '@mui/material';
-// import logoCh from 'chimera-x logo black.png';
-const useStyles = makeStyles((theme) => ({
-	root: {
-		minHeight: '100vh',
-		zIndex: theme.zIndex.modal,
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-	load: {
-		marginTop: theme.spacing(2),
-	},
-}));
+
 const LoadinSctreen = () => {
 	return (
-		<section className={classes.root}>
+		<section
+			style={{
+				minHeight: '100vh',
+				display: 'flex',
+				alignItems: 'center',
+				justifyContent: 'center',
+			}}
+		>
 			<Grid
 				container
 				justifyContent="center"
@@ -28,7 +21,7 @@ const LoadinSctreen = () => {
 				<Grid item>
 					<CircularProgress thickness={4} size={60} />
 				</Grid>
-				<Grid item className={classes.load}>
+				<Grid item sx={{ marginTop: '2rem' }}>
 					<Typography variant="h3" align="center">
 						Loading...
 					</Typography>
