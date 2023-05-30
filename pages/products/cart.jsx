@@ -18,6 +18,8 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import { useRouter } from 'next/router';
+import { useContext } from 'react';
+import { AuthContext } from '@/context/AuthContext';
 const Cart = ({
 	cart,
 	addToCart,
@@ -28,6 +30,7 @@ const Cart = ({
 }) => {
 	console.log(cart, addToCart, removeFromCart, clearCart, subTotal);
 	const router = useRouter();
+	const user = useContext(AuthContext);
 	return (
 		<main>
 			<Nav1></Nav1>
@@ -60,14 +63,16 @@ const Cart = ({
 
 					<TableBody>
 						{Object.keys(cart).map((k) => {
+							console.log(k);
+
 							return (
 								<TableRow key={k}>
-									<Image
+									<img
 										src={cart[k].img}
 										height={100}
 										width={70}
 										alt="product_image"
-									></Image>
+									></img>
 									<TableCell>{cart[k].title}</TableCell>
 									<TableCell>{cart[k].price}</TableCell>
 									<TableCell>
@@ -135,6 +140,7 @@ const Cart = ({
 					onClick={() => {
 						router.push('/products/checkout');
 					}}
+					disabled={!user.user}
 				>
 					Checkout
 				</Button>

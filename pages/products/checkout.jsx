@@ -25,10 +25,36 @@ import AddIcon from '@mui/icons-material/Add';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import usePayment from '@/hooks/usePayment';
+import { loadRazorpayScript } from '../../utils/loadScript';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
+import { useContext } from 'react';
+import { AuthContext } from '@/context/AuthContext';
 const Checkout = ({ cart, subTotal }) => {
 	const router = useRouter();
+	const user = useContext(AuthContext);
+	console.log(user, 'user');
+
+	useEffect(() => {
+		if (!user.user) {
+			router.push('/signup');
+		}
+		const loadScript = async () => {
+			try {
+				await loadRazorpayScript();
+				console.log('Razorpay script loaded');
+			} catch (error) {
+				console.error('Error loading Razorpay script:', error);
+			}
+		};
+
+		loadScript();
+	}, []);
+	// const router = useRouter();
 	const [furtherStep, setfurtherStep] = useState(false);
 	const [button, setbutton] = useState(false);
+	const { initiatePayment, loading } = usePayment();
 	let subt = 0;
 	let keys = Object.keys(cart);
 	for (let i = 0; i < keys.length; i++) {
@@ -72,9 +98,13 @@ const Checkout = ({ cart, subTotal }) => {
 		setfurtherStep(true);
 		setbutton(true);
 	};
-
+	const handleRazorpay = async (paymentAmount) => {
+		console.log('payment intiated for ', paymentAmount);
+		await initiatePayment(paymentAmount, router, toast);
+	};
 	return (
 		<div>
+			<ToastContainer />
 			<Nav1></Nav1>
 			<Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
 				<Paper
@@ -252,7 +282,14 @@ const Checkout = ({ cart, subTotal }) => {
 								<br />
 								Amount To Pay: {subt} Rupees
 							</Typography>
-							<Button variant="contained">Pay {subt}</Button>
+							<Button
+								variant="contained"
+								onClick={() => {
+									handleRazorpay(subt);
+								}}
+							>
+								Pay {subt}
+							</Button>
 							<Typography fontSize={'10px'}>
 								*Payment is Secured By RAZORPAY
 							</Typography>

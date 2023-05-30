@@ -2,23 +2,22 @@ import React from 'react';
 import { Paper, Box, Typography, Link, Button } from '@mui/material';
 import Nav1 from '@/components/Navbar';
 import Image from 'next/image';
+import { useState } from 'react';
 import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useGetProducts } from '@/hooks/useGetProducts';
+// import { useGetProducts } from '@/hooks/useGetProducts';
+import useGetProduct from '@/hooks/useGetProducts';
 import LoadinSctreen from '@/components/LoadinSctreen';
 const Him = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
-	const { getproducts, loading, error, setError, success, setSuccess, items } =
-		useGetProducts();
-	React.useEffect(() => {
-		const getp = async () => {
-			await getproducts();
-		};
-		getp();
-	}, []);
-	console.log('data', items);
+	const { products, loading } = useGetProduct();
+	console.log(products);
+	const [disabledButtons, setDisabledButtons] = useState([]);
 
-	const [disable, setDisable] = React.useState(false);
+	const handleClick = (index) => {
+		setDisabledButtons([...disabledButtons, index]);
+	};
+	// const [disable, setDisable] = React.useState(false);
 	if (loading) {
 		return <LoadinSctreen></LoadinSctreen>;
 	}
@@ -66,7 +65,7 @@ const Him = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 						paddingTop: '3rem',
 					}}
 				>
-					{items.map((item) => (
+					{products.map((item, index) => (
 						// <li>{item.title}</li>
 						<Paper sx={{ padding: '0px', margin: '2rem' }}>
 							<Box
@@ -90,7 +89,7 @@ const Him = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 									Cotton Oversized Tshirt
 								</Typography>
 								<Typography fontSize={'12px'} fontFamily={'cursive'}>
-									Sizes Available: S,M,XL,XXL
+									Sizes Available: S,M,XL
 								</Typography>
 								<Typography
 									fontFamily={'cursive'}
@@ -102,9 +101,11 @@ const Him = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 								<Button
 									sx={{ marginTop: '1rem' }}
 									variant="contained"
-									disabled={disable}
+									disabled={disabledButtons.includes(index)}
 									onClick={() => {
-										setDisable(true);
+										handleClick(index);
+
+										// console.log('clicked');
 										toast.success('Product Added Succesfully in Cart', {
 											position: 'bottom-left',
 											autoClose: 3000,
@@ -115,10 +116,23 @@ const Him = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 											progress: undefined,
 											theme: 'light',
 										});
+										addToCart(
+											index,
+											item.price,
+											item.img_url,
+											item.title,
+											item.sizes,
+											1,
+											item.colors,
+											'NO',
+											'NO',
+											'NO',
+											'NO'
+										);
 									}}
 								>
-									{disable && 'Added'}
-									{!disable && 'Add to Cart'}
+									{disabledButtons.includes(index) && 'Added'}
+									{!disabledButtons.includes(index) && 'Add to Cart'}
 								</Button>
 								<Button sx={{ marginTop: '1rem' }}>
 									<FavoriteTwoToneIcon></FavoriteTwoToneIcon>

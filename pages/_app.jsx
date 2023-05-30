@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/styles';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Paper } from '@mui/material';
 import { AuthContextProvider } from '@/context/AuthContext';
+import Footer from '@/components/Footer';
 const theme = createTheme({
 	palette: {
 		background: {
@@ -30,6 +31,7 @@ export default function App({ Component, pageProps }) {
 	const [cart, setCart] = React.useState({});
 	const [subTotal, setsubTotal] = React.useState(0);
 	const saveCartInLocal = (myCart) => {
+		console.log(myCart);
 		localStorage.setItem('cart', JSON.stringify(myCart));
 		let subt = 0;
 		let keys = Object.keys(cart);
@@ -132,6 +134,7 @@ export default function App({ Component, pageProps }) {
 					removeItemFromCart={removeItemFromCart}
 					{...pageProps}
 				/>
+				{/* <Footer></Footer> */}
 			</AuthContextProvider>
 		</ThemeProvider>
 	);
