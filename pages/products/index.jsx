@@ -37,8 +37,8 @@ const Products = () => {
 							router.push('/products/him');
 						}}
 						src="/him.png"
-						height="300"
-						width={'300'}
+						height="200"
+						width={'200'}
 					></Image>
 				</Box>
 				<Box
@@ -54,8 +54,8 @@ const Products = () => {
 							router.push('/products/him');
 						}}
 						src="/her.png"
-						height="300"
-						width={'300'}
+						height="200"
+						width={'200'}
 					></Image>
 				</Box>
 				{/* <Box></Box> */}

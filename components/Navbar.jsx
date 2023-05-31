@@ -57,24 +57,40 @@ function Nav1(props) {
 			{/* <Divider /> */}
 			<List>
 				<ListItem>
-					<Button>Categories</Button>
+					<Button
+						onClick={() => {
+							router.push('/');
+						}}
+					>
+						Home
+					</Button>
 				</ListItem>
 
 				<ListItem>
-					<Button>Fashion</Button>
+					<Button
+						onClick={() => {
+							router.push('/products/him');
+						}}
+					>
+						Men
+					</Button>
 				</ListItem>
 				<ListItem>
 					<Button
 						onClick={() => {
-							router.push('/studio');
+							router.push('/products/him');
 						}}
 					>
-						Studio
+						Woman
 					</Button>
 				</ListItem>
 				{user.user && (
 					<ListItem>
-						<Button>
+						<Button
+							onClick={() => {
+								router.push('/profile');
+							}}
+						>
 							<AccountCircleIcon fontSize="medium"></AccountCircleIcon>
 						</Button>
 					</ListItem>

@@ -20,30 +20,35 @@ export const useLogin = () => {
 	const login = async (email, password, router) => {
 		setLoading(true);
 		setError(null);
-		const response = await fetch(
-			`${process.env.NEXT_PUBLIC_BACKEND}/api/users/login`,
-			{
-				method: 'POST',
-				headers: {
-					Authorization: `Bearer ${user}`,
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({ email, password }),
+		try {
+			const response = await fetch(
+				`${process.env.NEXT_PUBLIC_BACKEND}/api/users/login`,
+				{
+					method: 'POST',
+					headers: {
+						Authorization: `Bearer ${user}`,
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({ email, password }),
+				}
+			);
+			const json = await response.json();
+			console.log(json);
+			if (!response.ok) {
+				setLoading(false);
+				console.log(json.message);
+				setError(json.message);
+				throw new Error('Something Wrong');
 			}
-		);
-		const json = await response.json();
-		console.log(json);
-		if (!response.ok) {
-			setLoading(false);
-			console.log(json.message);
-			setError(json.message);
-		}
-		if (response.ok) {
-			localStorage.setItem('user', JSON.stringify(json));
-			dispatch({ type: 'LOGIN', payload: json });
-			setLoading(false);
-			setSuccess('ok');
-			router.push('/');
+			if (response.ok) {
+				localStorage.setItem('user', JSON.stringify(json));
+				dispatch({ type: 'LOGIN', payload: json });
+				setLoading(false);
+				setSuccess('ok');
+				router.push('/');
+			}
+		} catch (error) {
+			setError(error);
 		}
 	};
 	console.log(loading);

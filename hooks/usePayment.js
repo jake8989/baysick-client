@@ -16,6 +16,7 @@ const usePayment = () => {
 				console.log(response, 'usePay');
 				// setrzpPaymentId(response.razorpay_payment_id);
 				localStorage.removeItem('cart');
+				localStorage.setItem('payee', true);
 				router.push('/service/ordercompleted');
 			},
 			notes: {

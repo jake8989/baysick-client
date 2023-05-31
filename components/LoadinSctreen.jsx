@@ -22,7 +22,7 @@ const LoadinSctreen = () => {
 					<CircularProgress thickness={4} size={60} />
 				</Grid>
 				<Grid item sx={{ marginTop: '2rem' }}>
-					<Typography variant="h3" align="center">
+					<Typography fontFamily={'cursive'} variant="h3" align="center">
 						Loading...
 					</Typography>
 				</Grid>

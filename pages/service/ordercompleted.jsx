@@ -12,11 +12,19 @@ import LoadinSctreen from '@/components/LoadinSctreen';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { AuthContext } from '@/context/AuthContext';
+import { LocalParking } from '@mui/icons-material';
 const Ordercompleted = () => {
 	const router = useRouter();
 
 	const user = useContext(AuthContext);
 	console.log(user);
+	// useEffect(() => {
+	// 	if (localStorage.getItem('payee')) {
+	// 		localStorage.removeItem('payee');
+	// 	} else {
+	// 		router.push('/cart');
+	// 	}
+	// }, []);
 
 	if (!user.user) {
 		return (
@@ -110,7 +118,7 @@ const Ordercompleted = () => {
 					},
 				}}
 			>
-				Keep Shoping!
+				Keep Shopping!
 			</Typography>
 			{/* </Paper> */}
 			<Box
