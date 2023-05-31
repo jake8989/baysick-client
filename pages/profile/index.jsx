@@ -188,127 +188,127 @@ const index = () => {
 								{/* </Paper> */}
 							</Box>
 						</Paper>
-						<Paper>
-							<Box height={'500px'} width={'350px'}>
-								{/* <Paper> */}
-								<Box>
-									<Paper>
-										<Typography
-											variant="h6"
-											color={'#334257'}
-											fontFamily={'cursive'}
-											textAlign={'center'}
-										>
-											Liked Items
-										</Typography>
-										<Box display={'flex'} flexDirection={'column'} mt="1rem">
-											<Box height={'40px'}>
-												<Typography
-													color={'#334257'}
-													fontFamily={'cursive'}
-													textAlign={'center'}
-												>
-													Item-1
-													<Button>
-														<DeleteOutlineIcon></DeleteOutlineIcon>
-													</Button>
-												</Typography>
-											</Box>
-											<Box height={'40px'}>
-												<Typography
-													color={'#334257'}
-													fontFamily={'cursive'}
-													textAlign={'center'}
-												>
-													Item-2
-													<Button>
-														<DeleteOutlineIcon></DeleteOutlineIcon>
-													</Button>
-												</Typography>
-											</Box>
-											<Box height={'40px'}>
-												<Typography
-													color={'#334257'}
-													fontFamily={'cursive'}
-													textAlign={'center'}
-												>
-													Item-3
-													<Button>
-														<DeleteOutlineIcon></DeleteOutlineIcon>
-													</Button>
-												</Typography>
-											</Box>
-											<Box height={'40px'}>
-												<Typography
-													color={'#334257'}
-													fontFamily={'cursive'}
-													textAlign={'center'}
-												>
-													Item-4
-													<Button>
-														<DeleteOutlineIcon></DeleteOutlineIcon>
-													</Button>
-												</Typography>
-											</Box>
-											<Box height={'40px'}>
-												<Typography
-													color={'#334257'}
-													fontFamily={'cursive'}
-													textAlign={'center'}
-												>
-													Item-5
-													<Button>
-														<DeleteOutlineIcon></DeleteOutlineIcon>
-													</Button>
-												</Typography>
-											</Box>
+						{/* <Paper> */}
+						<Box height={'500px'} width={'350px'}>
+							{/* <Paper> */}
+							<Box>
+								<Paper>
+									<Typography
+										variant="h6"
+										color={'#334257'}
+										fontFamily={'cursive'}
+										textAlign={'center'}
+									>
+										Liked Items
+									</Typography>
+									<Box display={'flex'} flexDirection={'column'} mt="1rem">
+										<Box height={'40px'}>
+											<Typography
+												color={'#334257'}
+												fontFamily={'cursive'}
+												textAlign={'center'}
+											>
+												Item-1
+												<Button>
+													<DeleteOutlineIcon></DeleteOutlineIcon>
+												</Button>
+											</Typography>
 										</Box>
-									</Paper>
-								</Box>
-								<Box mt={'84px'}>
-									<Paper>
-										<Typography
-											variant="h6"
-											color={'#334257'}
-											fontFamily={'cursive'}
-											textAlign={'center'}
-										>
-											Orders (last-3)
-										</Typography>
-										<Box display={'flex'} flexDirection={'column'} mt="1rem">
-											<Box height={'40px'}>
-												<Typography
-													color={'#334257'}
-													fontFamily={'cursive'}
-													textAlign={'center'}
-												>
-													Item-1
-												</Typography>
-											</Box>
-											<Box height={'40px'}>
-												<Typography
-													color={'#334257'}
-													fontFamily={'cursive'}
-													textAlign={'center'}
-												>
-													Item-2
-												</Typography>
-											</Box>
-											<Box height={'40px'}>
-												<Typography
-													color={'#334257'}
-													fontFamily={'cursive'}
-													textAlign={'center'}
-												>
-													Item-3
-												</Typography>
-											</Box>
+										<Box height={'40px'}>
+											<Typography
+												color={'#334257'}
+												fontFamily={'cursive'}
+												textAlign={'center'}
+											>
+												Item-2
+												<Button>
+													<DeleteOutlineIcon></DeleteOutlineIcon>
+												</Button>
+											</Typography>
 										</Box>
-									</Paper>
-								</Box>
-								{/* </Paper> */}
+										<Box height={'40px'}>
+											<Typography
+												color={'#334257'}
+												fontFamily={'cursive'}
+												textAlign={'center'}
+											>
+												Item-3
+												<Button>
+													<DeleteOutlineIcon></DeleteOutlineIcon>
+												</Button>
+											</Typography>
+										</Box>
+										<Box height={'40px'}>
+											<Typography
+												color={'#334257'}
+												fontFamily={'cursive'}
+												textAlign={'center'}
+											>
+												Item-4
+												<Button>
+													<DeleteOutlineIcon></DeleteOutlineIcon>
+												</Button>
+											</Typography>
+										</Box>
+										<Box height={'40px'}>
+											<Typography
+												color={'#334257'}
+												fontFamily={'cursive'}
+												textAlign={'center'}
+											>
+												Item-5
+												<Button>
+													<DeleteOutlineIcon></DeleteOutlineIcon>
+												</Button>
+											</Typography>
+										</Box>
+									</Box>
+								</Paper>
 							</Box>
-						</Paper>
+							<Box mt={'84px'}>
+								<Paper>
+									<Typography
+										variant="h6"
+										color={'#334257'}
+										fontFamily={'cursive'}
+										textAlign={'center'}
+									>
+										Orders (last-3)
+									</Typography>
+									<Box display={'flex'} flexDirection={'column'} mt="1rem">
+										<Box height={'40px'}>
+											<Typography
+												color={'#334257'}
+												fontFamily={'cursive'}
+												textAlign={'center'}
+											>
+												Item-1
+											</Typography>
+										</Box>
+										<Box height={'40px'}>
+											<Typography
+												color={'#334257'}
+												fontFamily={'cursive'}
+												textAlign={'center'}
+											>
+												Item-2
+											</Typography>
+										</Box>
+										<Box height={'40px'}>
+											<Typography
+												color={'#334257'}
+												fontFamily={'cursive'}
+												textAlign={'center'}
+											>
+												Item-3
+											</Typography>
+										</Box>
+									</Box>
+								</Paper>
+							</Box>
+							{/* </Paper> */}
+						</Box>
+						{/* </Paper> */}
 					</Box>
 				</Box>
 			</Paper>

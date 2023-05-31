@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 // import { env } from '@/next.config';
 const usePayment = () => {
 	// const [paystatus, setpaystatus] = useState(null);
-	// const [loading, setLoading] = useState(false);
+	const [err, seterr] = useState(null);
 	// const [rzpPaymentId, setrzpPaymentId] = useState(null);
+
 	const handleOpenRazorpay = (data, router) => {
 		const options = {
 			key: process.env.RAZORPAY_KEY_ID,
@@ -12,12 +13,38 @@ const usePayment = () => {
 			name: 'BaySick',
 			description: 'Transaction for t-shirts',
 			order_id: data.id,
-			handler: function (response) {
+			handler: async function (response) {
 				console.log(response, 'usePay');
 				// setrzpPaymentId(response.razorpay_payment_id);
 				localStorage.removeItem('cart');
 				localStorage.setItem('payee', true);
-				router.push('/service/ordercompleted');
+				////////////////////////////
+				const paymentId = response.razorpay_payment_id;
+				const orderId = response.razorpay_order_id;
+				const signature = response.razorpay_signature;
+				console.log(paymentId, orderId, signature);
+				try {
+					const response_paid = await fetch(
+						`${process.env.NEXT_PUBLIC_BACKEND}/api/payment/set-payment-id`,
+						{
+							method: 'POST',
+							// mode: 'no-cors',
+							headers: { 'Content-Type': 'application/json' },
+							body: JSON.stringify({ paymentId, orderId, signature }),
+						}
+					);
+					const json = await response_paid.json();
+					if (!response_paid.ok) {
+						alert('An Error Occurred!');
+					}
+					if (response_paid.ok) {
+						router.push(`/service/ordercompleted/${paymentId}`);
+					}
+				} catch (error) {
+					alert('An Error Occurred!');
+				}
+
+				/////////////////////////////
 			},
 			notes: {
 				address: 'BaySick Corporate Office Kota',
@@ -65,11 +92,35 @@ const usePayment = () => {
 			}
 		} catch (error) {
 			// setLoading(false);
+			alert('An error occurred!');
 			console.error('Error fetching products:', error);
 		}
 	};
-
-	// initiatePayment(amount);
+	// const verifySlugAndEmailRoutes = async (paymentId, router) => {
+	// 	if (paymentId === '') {
+	// 		router.push('/');
+	// 	}
+	// 	try {
+	// 		const response = await fetch(
+	// 			`${process.env.NEXT_PUBLIC_BACKEND}/api/payment/verify-payment-id`,
+	// 			{
+	// 				method: 'POST',
+	// 				// mode: 'no-cors',
+	// 				headers: { 'Content-Type': 'application/json' },
+	// 				body: JSON.stringify({ paymentId }),
+	// 			}
+	// 		);
+	// 		const data = await response.json();
+	// 		if (!response.ok) {
+	// 			seterr('error');
+	// 			alert('This Payment Id is not found in DB!');
+	// 			// router.push('/');
+	// 		}
+	// 	} catch (error) {
+	// 		alert('An error occurred!');
+	// 		console.error('Error fetching products:', error);
+	// 	}
+	// };
 	return { initiatePayment };
 };
 

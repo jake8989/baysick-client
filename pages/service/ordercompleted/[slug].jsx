@@ -13,11 +13,14 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { AuthContext } from '@/context/AuthContext';
 import { LocalParking } from '@mui/icons-material';
+// import usePayment from '@/hooks/usePayment';
+import useVerifyPaymentSlug from '@/hooks/useVerifyPaymentSlug';
 const Ordercompleted = () => {
 	const router = useRouter();
 
 	const user = useContext(AuthContext);
 	console.log(user);
+	// const { verifySlugAndEmailRoutes, err } = usePayment();
 	// useEffect(() => {
 	// 	if (localStorage.getItem('payee')) {
 	// 		localStorage.removeItem('payee');
@@ -25,6 +28,13 @@ const Ordercompleted = () => {
 	// 		router.push('/cart');
 	// 	}
 	// }, []);
+	const { slug } = router.query;
+	console.log(slug);
+	const { verifyPaymentId, errorSlug } = useVerifyPaymentSlug();
+	useEffect(() => {
+		verifyPaymentId(slug);
+		console.log(errorSlug);
+	}, [router.query]);
 
 	if (!user.user) {
 		return (
@@ -64,6 +74,30 @@ const Ordercompleted = () => {
 			</main>
 		);
 	}
+	if (errorSlug) {
+		return (
+			<main>
+				<Nav1></Nav1>
+				<Typography
+					letterSpacing={4}
+					fontFamily={'cursive'}
+					variant="h5"
+					marginTop={'3rem'}
+					fontWeight={'500'}
+					color={'#334257'}
+					textAlign={'center'}
+					sx={{
+						userSelect: 'none',
+						'@media(max-width:452px)': {
+							fontSize: '20px',
+						},
+					}}
+				>
+					No Order and Payment found for this order id {slug}
+				</Typography>
+			</main>
+		);
+	}
 	return (
 		<main>
 			{/* <Paper> */}
@@ -84,7 +118,7 @@ const Ordercompleted = () => {
 					},
 				}}
 			>
-				Order and Payment has been done!
+				Order and Payment has been done for order id {slug}
 			</Typography>
 			<Typography
 				letterSpacing={4}
