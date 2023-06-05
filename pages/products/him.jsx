@@ -55,7 +55,7 @@ const Him = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 				>
 					T-Shirts for men
 				</Typography> */}
-				<Box>Filters</Box>
+				{/* <Box>Filters</Box> */}
 				<Box
 					sx={{
 						display: 'flex',
@@ -82,6 +82,9 @@ const Him = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 									width={240}
 									alt="product_image"
 								></img>
+								<Typography fontFamily={'cursive'} fontSize={'12px'}>
+									{item.product_id}
+								</Typography>
 								<Typography variant="h6" fontFamily={'cursive'}>
 									{item.title}
 								</Typography>

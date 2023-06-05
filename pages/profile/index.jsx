@@ -78,12 +78,17 @@ const index = () => {
 						<Paper>
 							<Box height={'500px'} width={'350px'}>
 								{/* <Paper> */}
-								<Box>
+								<Box
+									display={'flex'}
+									flexDirection={'column'}
+									justifyContent={'center'}
+									alignItems={'center'}
+								>
 									<img
 										src="https://ssg-prod.s3.amazonaws.com/projects/83ffe5d5-80b2-4c9e-be03-63cfccbeb1c9/dummy2.JPG"
 										alt="profile image"
-										height={'250px'}
-										width={'350px'}
+										height={'150px'}
+										width={'200px'}
 										style={{ borderRadius: '15px 40px' }}
 									/>
 									{!user.user && (
@@ -126,7 +131,7 @@ const index = () => {
 										>
 											Phone:
 											{user.user.user.phone}
-											<span style={{ fontSize: '10px' }}>( not varified)</span>
+											<span style={{ fontSize: '10px' }}>( not verified)</span>
 										</Typography>
 									)}
 									{!user.user && (
@@ -149,7 +154,7 @@ const index = () => {
 										>
 											Email:
 											{user.user.user.email}
-											<span style={{ fontSize: '10px' }}>( not varified)</span>
+											<span style={{ fontSize: '10px' }}>( not verified)</span>
 										</Typography>
 									)}
 									{!user.user && (

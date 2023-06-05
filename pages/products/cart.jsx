@@ -131,11 +131,16 @@ const Cart = ({
 						})}
 					</TableBody>
 				</Table>
-				<Button sx={{ margin: '3rem' }} variant="contained" onClick={clearCart}>
+				<Button
+					sx={{ margin: '10px' }}
+					variant="contained"
+					onClick={clearCart}
+					disabled={Object.keys(cart).length === 0}
+				>
 					Clear Cart
 				</Button>
 				<Button
-					sx={{ margin: '3rem' }}
+					sx={{ margin: '10px' }}
 					variant="contained"
 					onClick={() => {
 						router.push('/products/checkout');
@@ -144,6 +149,27 @@ const Cart = ({
 				>
 					Checkout
 				</Button>
+				{!user.user && Object.keys(cart).length !== 0 && (
+					<Box>
+						<Typography
+							fontFamily={'cursive'}
+							color={'red'}
+							variant="h5"
+							textAlign={'center'}
+						>
+							User not logged in Please login to Continue!
+							<Button
+								sx={{ margin: '3rem' }}
+								variant="contained"
+								onClick={() => {
+									router.push('/signup');
+								}}
+							>
+								Signup
+							</Button>
+						</Typography>
+					</Box>
+				)}
 			</TableContainer>
 		</main>
 	);

@@ -22,7 +22,6 @@ const usePayment = () => {
 				const paymentId = response.razorpay_payment_id;
 				const orderId = response.razorpay_order_id;
 				const signature = response.razorpay_signature;
-				console.log(paymentId, orderId, signature);
 				try {
 					const response_paid = await fetch(
 						`${process.env.NEXT_PUBLIC_BACKEND}/api/payment/set-payment-id`,
@@ -96,31 +95,7 @@ const usePayment = () => {
 			console.error('Error fetching products:', error);
 		}
 	};
-	// const verifySlugAndEmailRoutes = async (paymentId, router) => {
-	// 	if (paymentId === '') {
-	// 		router.push('/');
-	// 	}
-	// 	try {
-	// 		const response = await fetch(
-	// 			`${process.env.NEXT_PUBLIC_BACKEND}/api/payment/verify-payment-id`,
-	// 			{
-	// 				method: 'POST',
-	// 				// mode: 'no-cors',
-	// 				headers: { 'Content-Type': 'application/json' },
-	// 				body: JSON.stringify({ paymentId }),
-	// 			}
-	// 		);
-	// 		const data = await response.json();
-	// 		if (!response.ok) {
-	// 			seterr('error');
-	// 			alert('This Payment Id is not found in DB!');
-	// 			// router.push('/');
-	// 		}
-	// 	} catch (error) {
-	// 		alert('An error occurred!');
-	// 		console.error('Error fetching products:', error);
-	// 	}
-	// };
+
 	return { initiatePayment };
 };
 

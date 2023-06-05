@@ -47,12 +47,7 @@ function Nav1(props) {
 			}}
 		>
 			<Typography variant="h6" sx={{ my: 2, textAlign: '-webkit-center' }}>
-				<img
-					height={'60px'}
-					width="100px"
-					style={{ height: '60px' }}
-					src="/next.svg"
-				/>
+				BaySick
 			</Typography>
 			{/* <Divider /> */}
 			<List>
@@ -92,6 +87,7 @@ function Nav1(props) {
 							}}
 						>
 							<AccountCircleIcon fontSize="medium"></AccountCircleIcon>
+							Profile
 						</Button>
 					</ListItem>
 				)}
@@ -115,6 +111,7 @@ function Nav1(props) {
 						}}
 					>
 						<ShoppingBagTwoToneIcon></ShoppingBagTwoToneIcon>
+						Cart
 					</Button>
 				</ListItem>
 			</List>
@@ -149,12 +146,36 @@ function Nav1(props) {
 						<Typography
 							variant="h6"
 							component="div"
-							sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+							letterSpacing={4}
+							fontFamily={'cursive'}
+							color={'#334257'}
+							sx={{
+								flexGrow: 1,
+								display: { xs: 'none', sm: 'block' },
+								userSelect: 'none',
+							}}
 						>
-							<img height="60px" width="100px" src={'/next.svg'} />
+							{/* <img height="60px" width="100px" src={'/next.svg'} />
+							 */}
+							BaySick
 						</Typography>
 						<Box sx={{ display: { xs: 'block', sm: 'none' } }}>
-							<img height="60px" width="100px" src={'/next.svg'} />
+							<Typography
+								variant="h6"
+								component="div"
+								letterSpacing={4}
+								fontFamily={'cursive'}
+								color={'#334257'}
+								sx={{
+									flexGrow: 1,
+									display: { xs: 'none', sm: 'block' },
+									userSelect: 'none',
+								}}
+							>
+								{/* <img height="60px" width="100px" src={'/next.svg'} />
+								 */}
+								BaySick
+							</Typography>
 						</Box>
 						<Box sx={{ display: { xs: 'none', sm: 'block' } }}>
 							<List sx={{ display: 'flex' }}>
@@ -200,6 +221,7 @@ function Nav1(props) {
 											}}
 										>
 											<AccountCircleIcon fontSize="medium"></AccountCircleIcon>
+											Profile
 										</Button>
 									</ListItem>
 								)}
@@ -211,6 +233,7 @@ function Nav1(props) {
 										}}
 									>
 										<ShoppingBagTwoToneIcon></ShoppingBagTwoToneIcon>
+										Cart
 									</Button>
 								</ListItem>
 
