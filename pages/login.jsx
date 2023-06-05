@@ -65,7 +65,7 @@ export default function Login() {
 		let email = data.get('email');
 		let password = data.get('password');
 
-		let phone = data.get('phone');
+		let secret = data.get('secret');
 		const validator = (email, password, phone) => {
 			if (email === '' || password === '' || phone === '') {
 				alert('please provide valid input fields');
@@ -88,7 +88,7 @@ export default function Login() {
 		if (!validator(email, password, phone)) {
 			return;
 		}
-		await login(email, password, router);
+		await login(email, secret, password, router);
 	};
 
 	return (
@@ -127,6 +127,16 @@ export default function Login() {
 								id="phone"
 								label="phone"
 								name="phone"
+								// autoComplete="Phone"
+							/>
+						</Grid>
+						<Grid item xs={12}>
+							<TextField
+								required
+								fullWidth
+								id="secret"
+								label="你好吗？"
+								name="secret"
 								// autoComplete="Phone"
 							/>
 						</Grid>

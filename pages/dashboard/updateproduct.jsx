@@ -20,7 +20,6 @@ import {
 	Snackbar,
 	Alert,
 } from '@mui/material';
-// import { useAddProduct } from '@/hooks/useAddProduct';
 import { useUpdateProduct } from '@/hooks/useAddProduct';
 import { useRouter } from 'next/router';
 function Copyright(props) {

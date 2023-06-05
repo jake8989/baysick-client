@@ -16,7 +16,7 @@ export const useLogin = () => {
 	const user = useContext(AuthContext);
 	// let token = user.user.token;
 	console.log(user);
-	const login = async (email, password, router) => {
+	const login = async (email, secret, password, router) => {
 		setLoading(true);
 		setError(null);
 		const response = await fetch(
@@ -27,7 +27,7 @@ export const useLogin = () => {
 					Authorization: `Bearer ${user}`,
 					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify({ email, password }),
+				body: JSON.stringify({ email, secret, password }),
 			}
 		);
 		const json = await response.json();

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Paper, Box, Typography, Button } from '@mui/material';
 import LoadinSctreen from '@/components/LoadinSctreen';
 import { useRouter } from 'next/router';
@@ -7,14 +7,14 @@ import { AuthContext } from '@/context/AuthContext';
 const Index = () => {
 	const router = useRouter();
 	const user = useContext(AuthContext);
-	console.log(user);
+	console.log(user.user);
 	// console.log(user.user.user.role);
-	if (!user) {
-		router.push('/');
-	}
-	// } else if (user.user.user.role != 'ADMIN') {
-	// 	router.push('/');
-	// }
+	useEffect(() => {
+		if (!user.user) {
+			router.push('/');
+		}
+	}, []);
+
 	return (
 		<Paper sx={{ minHeight: '100vh' }}>
 			<h1 style={{ textAlign: 'center' }}>Admin Dashboard</h1>
