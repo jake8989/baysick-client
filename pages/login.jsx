@@ -27,8 +27,7 @@ import { useLogin } from '@/hooks/useLogin';
 import { useContext } from 'react';
 import { AuthContext } from '@/context/AuthContext';
 var emailValidator = require('email-validator');
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 function Copyright(props) {
 	return (
 		<Typography
@@ -91,34 +90,10 @@ export default function Login() {
 			return;
 		}
 		await login(email, password, router);
-		if (success) {
-			toast.success('User Logged In Successfully!', {
-				position: 'bottom-left',
-				autoClose: 3000,
-				hideProgressBar: false,
-				closeOnClick: true,
-				pauseOnHover: true,
-				draggable: true,
-				progress: undefined,
-				theme: 'light',
-			});
-		}
 	};
 
 	return (
 		<Container component="main" maxWidth="xs">
-			<ToastContainer
-				position="bottom-left"
-				autoClose={3000}
-				hideProgressBar={false}
-				newestOnTop={false}
-				closeOnClick
-				rtl={false}
-				pauseOnFocusLoss
-				draggable
-				pauseOnHover
-				theme="light"
-			/>
 			<CssBaseline />
 			<Box
 				sx={{
