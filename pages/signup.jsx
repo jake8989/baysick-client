@@ -98,7 +98,7 @@ export default function SignUp() {
 		if (!validator(name, email, password, phone)) {
 			return;
 		}
-		await signup(name, email, phone, password, router);
+		await signup(name, email, phone, password, router, toast);
 	};
 
 	return (
