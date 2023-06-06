@@ -27,7 +27,6 @@ import { useLogin } from '@/hooks/useLogin';
 import { useContext } from 'react';
 import { AuthContext } from '@/context/AuthContext';
 var emailValidator = require('email-validator');
-
 function Copyright(props) {
 	return (
 		<Typography

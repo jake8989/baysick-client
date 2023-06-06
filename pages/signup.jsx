@@ -25,7 +25,6 @@ import LoadinSctreen from '@/components/LoadinSctreen';
 var emailValidator = require('email-validator');
 import { useRouter } from 'next/router';
 import { useSignup } from '@/hooks/useSignup';
-
 function Copyright(props) {
 	return (
 		<Typography
@@ -206,7 +205,13 @@ export default function SignUp() {
 					>
 						{loading ? 'Loading...' : 'Sign Up'}
 					</Button>
-
+					{success && (
+						<Snackbar open={open} autoHideDuration={2000}>
+							<Alert severity="success" sx={{ width: '100%' }}>
+								Account Created Succesfully
+							</Alert>
+						</Snackbar>
+					)}
 					{error && (
 						<Snackbar open={open} autoHideDuration={6000}>
 							<Alert severity="error" sx={{ width: '100%' }}>
