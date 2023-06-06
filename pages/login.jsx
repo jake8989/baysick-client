@@ -90,7 +90,19 @@ export default function Login() {
 		if (!validator(email, password, phone)) {
 			return;
 		}
-		await login(email, password, router, toast);
+		await login(email, password, router);
+		if (success) {
+			toast.success('User Logged In Successfully!', {
+				position: 'bottom-left',
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: 'light',
+			});
+		}
 	};
 
 	return (

@@ -100,7 +100,19 @@ export default function SignUp() {
 		if (!validator(name, email, password, phone)) {
 			return;
 		}
-		await signup(name, email, phone, password, router, toast);
+		await signup(name, email, phone, password, router);
+		if (success) {
+			toast.success('User Created Successfully', {
+				position: 'bottom-left',
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: 'light',
+			});
+		}
 	};
 
 	return (
@@ -207,13 +219,6 @@ export default function SignUp() {
 					>
 						{loading ? 'Loading...' : 'Sign Up'}
 					</Button>
-					{success && (
-						<Snackbar open={open} autoHideDuration={2000}>
-							<Alert severity="success" sx={{ width: '100%' }}>
-								Account Created Succesfully
-							</Alert>
-						</Snackbar>
-					)}
 					{error && (
 						<Snackbar open={open} autoHideDuration={6000}>
 							<Alert severity="error" sx={{ width: '100%' }}>

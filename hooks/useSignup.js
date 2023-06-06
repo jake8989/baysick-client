@@ -80,16 +80,7 @@ export const useSignup = () => {
 				setLoading(false);
 				console.log(json.message);
 				setError(json.message);
-				toast.error('Server Error Try To Reload The Page!', {
-					position: 'bottom-left',
-					autoClose: 3000,
-					hideProgressBar: false,
-					closeOnClick: true,
-					pauseOnHover: true,
-					draggable: true,
-					progress: undefined,
-					theme: 'light',
-				});
+
 				throw new Error('Something Wrong');
 			}
 			if (response.ok) {
@@ -97,16 +88,7 @@ export const useSignup = () => {
 				dispatch({ type: 'LOGIN', payload: json });
 				setLoading(false);
 				setSuccess('ok');
-				toast.success('User Created Successfully!', {
-					position: 'bottom-left',
-					autoClose: 3000,
-					hideProgressBar: false,
-					closeOnClick: true,
-					pauseOnHover: true,
-					draggable: true,
-					progress: undefined,
-					theme: 'light',
-				});
+
 				router.push('/');
 			}
 		} catch (error) {
