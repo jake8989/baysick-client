@@ -101,18 +101,6 @@ export default function SignUp() {
 			return;
 		}
 		await signup(name, email, phone, password, router);
-		if (success) {
-			toast.success('User Created Successfully', {
-				position: 'bottom-left',
-				autoClose: 3000,
-				hideProgressBar: false,
-				closeOnClick: true,
-				pauseOnHover: true,
-				draggable: true,
-				progress: undefined,
-				theme: 'light',
-			});
-		}
 	};
 
 	return (
@@ -219,6 +207,7 @@ export default function SignUp() {
 					>
 						{loading ? 'Loading...' : 'Sign Up'}
 					</Button>
+
 					{error && (
 						<Snackbar open={open} autoHideDuration={6000}>
 							<Alert severity="error" sx={{ width: '100%' }}>

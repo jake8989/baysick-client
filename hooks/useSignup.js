@@ -60,7 +60,7 @@ export const useSignup = () => {
 	const user = useContext(AuthContext);
 	// let token = user.user.token;
 	console.log(user);
-	const signup = async (name, email, phone, password, router, toast) => {
+	const signup = async (name, email, phone, password, router) => {
 		setLoading(true);
 		setError(null);
 		try {
