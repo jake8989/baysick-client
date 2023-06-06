@@ -17,7 +17,7 @@ export const useLogin = () => {
 	const user = useContext(AuthContext);
 	// let token = user.user.token;
 	console.log(user);
-	const login = async (email, password, router) => {
+	const login = async (email, password, router, toast) => {
 		setLoading(true);
 		setError(null);
 		try {
@@ -38,6 +38,16 @@ export const useLogin = () => {
 				setLoading(false);
 				console.log(json.message);
 				setError(json.message);
+				toast.error('Error Occurred!', {
+					position: 'bottom-left',
+					autoClose: 3000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: 'light',
+				});
 				throw new Error('Something Wrong');
 			}
 			if (response.ok) {
@@ -45,6 +55,16 @@ export const useLogin = () => {
 				dispatch({ type: 'LOGIN', payload: json });
 				setLoading(false);
 				setSuccess('ok');
+				toast.success('User Logged In Successfully!', {
+					position: 'bottom-left',
+					autoClose: 3000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: 'light',
+				});
 				router.push('/');
 			}
 		} catch (error) {
