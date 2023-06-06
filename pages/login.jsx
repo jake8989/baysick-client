@@ -65,7 +65,7 @@ export default function Login() {
 		let email = data.get('email');
 		let password = data.get('password');
 
-		let secret = data.get('secret');
+		let phone = data.get('phone');
 		const validator = (email, password, phone) => {
 			if (email === '' || password === '' || phone === '') {
 				alert('please provide valid input fields');
@@ -88,7 +88,7 @@ export default function Login() {
 		if (!validator(email, password, phone)) {
 			return;
 		}
-		await login(email, secret, password, router);
+		await login(email, password, router);
 	};
 
 	return (
@@ -106,7 +106,7 @@ export default function Login() {
 					<LockOutlinedIcon />
 				</Avatar>
 				<Typography component="h1" variant="h5">
-					Login
+					ADMIN LOGIN
 				</Typography>
 				<Box component="form" id="form-data" sx={{ mt: 3 }}>
 					<Grid container spacing={2}>
@@ -127,16 +127,6 @@ export default function Login() {
 								id="phone"
 								label="phone"
 								name="phone"
-								// autoComplete="Phone"
-							/>
-						</Grid>
-						<Grid item xs={12}>
-							<TextField
-								required
-								fullWidth
-								id="secret"
-								label="你好吗？"
-								name="secret"
 								// autoComplete="Phone"
 							/>
 						</Grid>
