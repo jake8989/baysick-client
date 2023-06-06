@@ -25,6 +25,8 @@ import LoadinSctreen from '@/components/LoadinSctreen';
 var emailValidator = require('email-validator');
 import { useRouter } from 'next/router';
 import { useSignup } from '@/hooks/useSignup';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function Copyright(props) {
 	return (
 		<Typography
