@@ -15,12 +15,14 @@ export const useSignup = () => {
 		setLoading(true);
 		setError(null);
 		// phone = Number(phone);
-		const response = await fetch(`http://localhost:8080/api/users/signup`, {
-			method: 'POST',
-			// mode: 'no-cors',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ name, email, phone, password }),
-		});
+		const response = await fetch(
+			`${process.env.NEXT_PUBLIC_BACKEND}/api/users/signup`,
+			{
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ name, email, phone, password }),
+			}
+		);
 		// console.log(response);
 		// if (!response.ok) {
 		// 	setError('Cannot do this action');

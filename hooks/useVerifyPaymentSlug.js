@@ -14,7 +14,7 @@ const useVerifyPaymentSlug = () => {
 					},
 					body: JSON.stringify({ paymentId }),
 				}
-			); // Replace with your backend API endpoint
+			);
 			const data = await response.json();
 			if (response.ok) {
 				seterrorSlug(false);

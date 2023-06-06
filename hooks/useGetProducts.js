@@ -9,7 +9,7 @@ const useGetProduct = () => {
 				setLoading(true);
 				const response = await fetch(
 					`${process.env.NEXT_PUBLIC_BACKEND}/api/products/products`
-				); // Replace with your backend API endpoint
+				);
 				const data = await response.json();
 				setProducts(data);
 				if (response.ok) {
