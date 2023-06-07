@@ -166,14 +166,14 @@ export default function Login() {
 						{loading ? 'Loading...' : 'Login'}
 					</Button>
 					{success && (
-						<Snackbar open={open} autoHideDuration={2000}>
+						<Snackbar autoHideDuration={2000}>
 							<Alert severity="success" sx={{ width: '100%' }}>
 								Logged in Succesfully
 							</Alert>
 						</Snackbar>
 					)}
 					{error && (
-						<Snackbar open={open} autoHideDuration={6000}>
+						<Snackbar autoHideDuration={6000}>
 							<Alert severity="error" sx={{ width: '100%' }}>
 								{error}{' '}
 								<Button
