@@ -206,14 +206,14 @@ export default function SignUp() {
 						{loading ? 'Loading...' : 'Sign Up'}
 					</Button>
 					{success && (
-						<Snackbar autoHideDuration={2000}>
+						<Snackbar open={open} autoHideDuration={2000}>
 							<Alert severity="success" sx={{ width: '100%' }}>
 								Account Created Succesfully
 							</Alert>
 						</Snackbar>
 					)}
 					{error && (
-						<Snackbar autoHideDuration={6000}>
+						<Snackbar open={open} autoHideDuration={6000}>
 							<Alert severity="error" sx={{ width: '100%' }}>
 								{error}{' '}
 								<Button
