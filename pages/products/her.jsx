@@ -2,12 +2,25 @@ import React from 'react';
 import { Paper, Box, Typography, Link, Button } from '@mui/material';
 import Nav1 from '@/components/Navbar';
 import Image from 'next/image';
+import { useState } from 'react';
 import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+// import { useGetProducts } from '@/hooks/useGetProducts';
+import useGetProduct from '@/hooks/useGetProducts';
+import LoadinSctreen from '@/components/LoadinSctreen';
 const Him = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
-	// const classes = useStyles();
-	const [disable, setDisable] = React.useState(false);
+	const { productsForMen, productsForWomen, loading } = useGetProduct();
+	// console.log(products);
+	const [disabledButtons, setDisabledButtons] = useState([]);
+
+	const handleClick = (index) => {
+		setDisabledButtons([...disabledButtons, index]);
+	};
+	// const [disable, setDisable] = React.useState(false);
+	if (loading) {
+		return <LoadinSctreen></LoadinSctreen>;
+	}
 	return (
 		<main>
 			<Nav1></Nav1>
@@ -42,7 +55,7 @@ const Him = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 				>
 					T-Shirts for men
 				</Typography> */}
-				<Box>Filters</Box>
+				{/* <Box>Filters</Box> */}
 				<Box
 					sx={{
 						display: 'flex',
@@ -52,162 +65,85 @@ const Him = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 						paddingTop: '3rem',
 					}}
 				>
-					<Paper sx={{ padding: '0px', margin: '2rem' }}>
-						<Box
-							sx={{
-								height: '440px',
-								width: '240px',
-								// border: '2px solid black',
-								margin: '2rem',
-							}}
-						>
-							<Image src="/t1.avif" height={280} width={240}></Image>
-							<Typography variant="h6" fontFamily={'cursive'}>
-								Difference of Opinion
-							</Typography>
-							<Typography fontFamily={'cursive'}>
-								Cotton Oversized Tshirt
-							</Typography>
-							<Typography fontSize={'12px'} fontFamily={'cursive'}>
-								Sizes Available: S,M,XL,XXL
-							</Typography>
-							<Typography
-								fontFamily={'cursive'}
-								// textAlign={'left'}
-								fontWeight={'bold'}
-							>
-								R.S 360
-							</Typography>
-							<Button
-								sx={{ marginTop: '1rem' }}
-								variant="contained"
-								onClick={() => {
-									addToCart(
-										'T-1',
-										900,
-										'/t1.avif',
-										'T-Shirt For Man',
-										'M',
-										1,
-										'Green',
-										'No',
-										'No',
-										'No',
-										'No'
-									);
+					{productsForWomen.map((item, index) => (
+						// <li>{item.title}</li>
+						<Paper sx={{ padding: '10px', margin: '1rem' }}>
+							<Box
+								sx={{
+									height: '440px',
+									width: '270px',
+									// border: '2px solid black',
+									margin: '1rem',
 								}}
 							>
-								Add To Cart
-							</Button>
-							<Button sx={{ marginTop: '1rem' }}>
-								<FavoriteTwoToneIcon></FavoriteTwoToneIcon>
-							</Button>
-						</Box>
-					</Paper>
-					<Paper sx={{ padding: '0px', margin: '2rem' }}>
-						<Box
-							sx={{
-								height: '440px',
-								width: '240px',
-								// border: '2px solid black',
-								margin: '2rem',
-							}}
-						>
-							<Image src="/t1.avif" height={280} width={240}></Image>
-							<Typography variant="h6" fontFamily={'cursive'}>
-								Difference of Opinion
-							</Typography>
-							<Typography fontFamily={'cursive'}>
-								Cotton Oversized Tshirt
-							</Typography>
-							<Typography fontSize={'12px'} fontFamily={'cursive'}>
-								Sizes Available: S,M,XL,XXL
-							</Typography>
-							<Typography
-								fontFamily={'cursive'}
-								// textAlign={'left'}
-								fontWeight={'bold'}
-							>
-								R.S 360
-							</Typography>
-							<Button
-								sx={{ marginTop: '1rem' }}
-								variant="contained"
-								onClick={() => {
-									addToCart(
-										'T-2',
-										900,
-										'/t1.avif',
-										'T-Shirt For woman',
-										'M',
-										1,
-										'Red',
-										'No',
-										'No',
-										'No',
-										'No'
-									);
-								}}
-							>
-								Add To Cart
-							</Button>
-							<Button sx={{ marginTop: '1rem' }}>
-								<FavoriteTwoToneIcon></FavoriteTwoToneIcon>
-							</Button>
-						</Box>
-					</Paper>
-					<Paper sx={{ padding: '0px', margin: '2rem' }}>
-						<Box
-							sx={{
-								height: '440px',
-								width: '240px',
-								// border: '2px solid black',
-								margin: '2rem',
-							}}
-						>
-							<Image src="/t1.avif" height={280} width={240}></Image>
-							<Typography variant="h6" fontFamily={'cursive'}>
-								Difference of Opinion
-							</Typography>
-							<Typography fontFamily={'cursive'}>
-								Cotton Oversized Tshirt
-							</Typography>
-							<Typography fontSize={'12px'} fontFamily={'cursive'}>
-								Sizes Available: S,M,XL,XXL
-							</Typography>
-							<Typography
-								fontFamily={'cursive'}
-								// textAlign={'left'}
-								fontWeight={'bold'}
-							>
-								R.S 360
-							</Typography>
-							<Button
-								sx={{ marginTop: '1rem' }}
-								variant="contained"
-								disabled={disable}
-								onClick={() => {
-									setDisable(true);
-									toast.success('Product Added Succesfully in Cart', {
-										position: 'bottom-left',
-										autoClose: 3000,
-										hideProgressBar: false,
-										closeOnClick: true,
-										pauseOnHover: true,
-										draggable: true,
-										progress: undefined,
-										theme: 'light',
-									});
-								}}
-							>
-								{disable && 'Added'}
-								{!disable && 'Add to Cart'}
-							</Button>
-							<Button sx={{ marginTop: '1rem' }}>
-								<FavoriteTwoToneIcon></FavoriteTwoToneIcon>
-							</Button>
-						</Box>
-					</Paper>
+								<img
+									src={`${item.img_url}`}
+									height={280}
+									width={270}
+									style={{ width: '100%' }}
+									alt="product_image"
+								></img>
+								<Typography fontFamily={'cursive'} fontSize={'12px'}>
+									{item.product_id}
+								</Typography>
+								<Typography variant="h6" fontFamily={'cursive'}>
+									{item.title}
+								</Typography>
+								<Typography fontFamily={'cursive'}>
+									Cotton Oversized Tshirt
+								</Typography>
+								<Typography fontSize={'12px'} fontFamily={'cursive'}>
+									Sizes Available: S,M,XL
+								</Typography>
+								<Typography
+									fontFamily={'cursive'}
+									// textAlign={'left'}
+									fontWeight={'bold'}
+								>
+									{item.price}
+								</Typography>
+								<Button
+									sx={{ marginTop: '1rem' }}
+									variant="contained"
+									disabled={disabledButtons.includes(index)}
+									onClick={() => {
+										handleClick(index);
+
+										// console.log('clicked');
+										toast.success('Product Added Succesfully in Cart', {
+											position: 'bottom-left',
+											autoClose: 3000,
+											hideProgressBar: false,
+											closeOnClick: true,
+											pauseOnHover: true,
+											draggable: true,
+											progress: undefined,
+											theme: 'light',
+										});
+										addToCart(
+											item.product_id,
+											item.price,
+											item.img_url,
+											item.title,
+											item.sizes,
+											1,
+											item.colors,
+											'NO',
+											'NO',
+											'NO',
+											'NO'
+										);
+									}}
+								>
+									{disabledButtons.includes(index) && 'Added'}
+									{!disabledButtons.includes(index) && 'Add to Cart'}
+								</Button>
+								<Button sx={{ marginTop: '1rem' }}>
+									<FavoriteTwoToneIcon></FavoriteTwoToneIcon>
+								</Button>
+							</Box>
+						</Paper>
+					))}
 				</Box>
 			</Paper>
 		</main>

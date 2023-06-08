@@ -21,6 +21,8 @@ import { useAuthContext } from '@/hooks/useAuthContext';
 import { AuthContext } from '@/context/AuthContext';
 import { useContext } from 'react';
 import ShoppingBagTwoToneIcon from '@mui/icons-material/ShoppingBagTwoTone';
+import ManIcon from '@mui/icons-material/Man';
+import WomanIcon from '@mui/icons-material/Woman';
 function Nav1(props) {
 	const router = useRouter();
 	// const [user, setUser] = React.useState(true);
@@ -67,16 +69,18 @@ function Nav1(props) {
 							router.push('/products/him');
 						}}
 					>
-						Men
+						<ManIcon></ManIcon>
+						he
 					</Button>
 				</ListItem>
 				<ListItem>
 					<Button
 						onClick={() => {
-							router.push('/products/him');
+							router.push('/products/her');
 						}}
 					>
-						Woman
+						<WomanIcon></WomanIcon>
+						she
 					</Button>
 				</ListItem>
 				{user.user && (
@@ -194,16 +198,18 @@ function Nav1(props) {
 											router.push('/products/him');
 										}}
 									>
-										Men
+										<ManIcon></ManIcon>
+										he
 									</Button>
 								</ListItem>
 								<ListItem>
 									<Button
 										onClick={() => {
-											router.push('/products/him');
+											router.push('/products/her');
 										}}
 									>
-										Woman
+										<WomanIcon></WomanIcon>
+										she
 									</Button>
 								</ListItem>
 								{/* {user && (

@@ -10,8 +10,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import useGetProduct from '@/hooks/useGetProducts';
 import LoadinSctreen from '@/components/LoadinSctreen';
 const Him = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
-	const { products, loading } = useGetProduct();
-	console.log(products);
+	const { productsForMen, productsForWomen, loading } = useGetProduct();
+	// console.log(products);
 	const [disabledButtons, setDisabledButtons] = useState([]);
 
 	const handleClick = (index) => {
@@ -65,15 +65,15 @@ const Him = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 						paddingTop: '3rem',
 					}}
 				>
-					{products.map((item, index) => (
+					{productsForMen.map((item, index) => (
 						// <li>{item.title}</li>
-						<Paper sx={{ padding: '0px', margin: '2rem' }}>
+						<Paper sx={{ padding: '10px', margin: '1rem' }}>
 							<Box
 								sx={{
 									height: '440px',
-									width: '240px',
+									width: '270px',
 									// border: '2px solid black',
-									margin: '2rem',
+									margin: '1rem',
 								}}
 							>
 								<img

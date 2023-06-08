@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 
 const useGetProduct = () => {
-	const [products, setProducts] = useState([]);
+	const [productsForMen, setproductsForMen] = useState([]);
+	const [productsForWomen, setproductsForWomen] = useState([]);
 	const [loading, setLoading] = useState(false);
 	useEffect(() => {
 		const fetchProducts = async () => {
@@ -11,7 +12,20 @@ const useGetProduct = () => {
 					`${process.env.NEXT_PUBLIC_BACKEND}/api/products/products`
 				);
 				const data = await response.json();
-				setProducts(data);
+				//
+				let d1 = [];
+				let d2 = [];
+				data.forEach((element) => {
+					console.log(element);
+					if (element.type.includes('girl')) {
+						d2.push(element);
+					} else {
+						d1.push(element);
+					}
+				});
+				console.log(d1, d2);
+				setproductsForMen(d1);
+				setproductsForWomen(d2);
 				if (response.ok) {
 					setLoading(false);
 				}
@@ -24,7 +38,7 @@ const useGetProduct = () => {
 		fetchProducts();
 	}, []);
 
-	return { products, loading };
+	return { productsForMen, productsForWomen, loading };
 };
 
 export default useGetProduct;
