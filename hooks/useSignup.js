@@ -47,7 +47,7 @@ export const useSignup = () => {
 					setLoading(false);
 				} else {
 					setError(
-						'Something went wrong! use different mobile number to continue'
+						'Something went wrong! use different mobile number and email to continue'
 					);
 					setLoading(false);
 					console.error(error);
