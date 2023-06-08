@@ -145,7 +145,7 @@ const Cart = ({
 					onClick={() => {
 						router.push('/products/checkout');
 					}}
-					disabled={!user.user}
+					disabled={!user.user || Object.keys(cart).length == 0}
 				>
 					Checkout
 				</Button>

@@ -37,8 +37,8 @@ const Checkout = ({ cart, subTotal }) => {
 	console.log(user, 'user');
 
 	useEffect(() => {
-		if (!user.user) {
-			router.push('/signup');
+		if (Object.keys(cart).length === 0) {
+			router.push('/products/cart');
 		}
 		const loadScript = async () => {
 			try {
@@ -52,6 +52,7 @@ const Checkout = ({ cart, subTotal }) => {
 		loadScript();
 	}, []);
 	// const router = useRouter();
+
 	const [furtherStep, setfurtherStep] = useState(false);
 	const [button, setbutton] = useState(false);
 	const { initiatePayment, loading } = usePayment();
